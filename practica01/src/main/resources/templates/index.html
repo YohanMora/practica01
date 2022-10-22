@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/estilo1.css"/>
+    </head>
+    <body>
+        <header id="titlePage">Práctica 01</header>
+        <a th:href="@{/nuevoEstado}">Nuevo estado</a>
+        <div th:if="${listEstados != null and !listEstados.empty}">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Capital</th>
+                        <th>Población</th>
+                        <th>Código</th>
+                        <th>Modificar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="item : ${listaClientes}">
+                        <td th:text="${item.nombre}"></td>
+                        <td th:text="${item.capital}"></td>
+                        <td th:text="${item.poblacion}"></td>
+                        <td th:text="${item.codigo}"></td>
+                        <td><a th:href="@{/modificarEstado/} + ${item.idEstado}">Modificar</a></td>
+                        <td><a th:href="@{/deleteEstado/} + ${item.idEstado}">Eliminar</a></td>
+                    </tr>
+                </tbody>
+            </table> 
+        </div>
+        <div th:if="${listEstados == null or listEstados.empty}">
+            Lista de estados vacía
+        </div>
+    </body>
+</html>
